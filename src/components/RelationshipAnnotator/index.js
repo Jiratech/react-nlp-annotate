@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState, useMemo } from "react"
+import React, { useState, useMemo, useEffect } from "react"
 
 import type { RelationshipAnnotatorProps } from "../../types"
 import Document from "../Document"
@@ -35,7 +35,7 @@ export default function RelationshipAnnotator(
   )
   const [activePair, setActivePair] = useState(null)
   const [creatingRelationships, setCreatingRelationships] = useState(true)
-  const [sequence, changeSequence] = useState(() => {
+  const newSequence = () => {
     const textIdsInRelationship = new Set(
       relationships.flatMap(({ to, from }) => [to, from])
     )
@@ -47,7 +47,13 @@ export default function RelationshipAnnotator(
             : stringToSequence(entity.text, props.separatorRegex).map(withId)
         )
       : stringToSequence(props.document).map(withId)
-  })
+  }
+  const [sequence, changeSequence] = useState(newSequence);
+
+  useEffect(() => {
+    setRelationships([]);
+    changeSequence(newSequence());
+  }, [props.document]);
 
   const labels = creatingRelationships
     ? props.relationshipLabels
