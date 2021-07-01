@@ -147,20 +147,28 @@ export default function RelationshipAnnotator(
               from: first,
               to: second,
               label: "???",
-              color: "#f00"
+              color: "#f00",
+              temp: true,
             })
           }}
-          onRelationshipsChange={relationships =>
-            setRelationships(relationships)
-          }
-          onHighlightedChanged={highlightedItems =>
-            changeHighlightedItems(highlightedItems)
-          }
-          onSequenceChange={sequence => {
-            changeSequence(sequence)
+          onRelationshipsChange={rel => {
+            setRelationships(rel);
             const allTextIds = new Set(sequence.map(item => item.textId))
             props.onChange({
               sequence: sequence,
+              relationships: rel.filter(
+                r => allTextIds.has(r.from) && allTextIds.has(r.to)
+              )
+            })
+          }}
+          onHighlightedChanged={highlightedItems => {
+            changeHighlightedItems(highlightedItems)
+          }}
+          onSequenceChange={seq => {
+            changeSequence(seq)
+            const allTextIds = new Set(seq.map(item => item.textId))
+            props.onChange({
+              sequence: seq,
               relationships: relationships.filter(
                 r => allTextIds.has(r.from) && allTextIds.has(r.to)
               )

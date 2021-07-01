@@ -139,8 +139,8 @@ export default function Document({
       )}
       {relationships && (
         <RelationshipArrows
-          onClickArrow={({ label, from, to }) => {
-            onRelationshipsChange(
+          onClickArrow={({ label, from, to, temp }) => {
+            !temp && onRelationshipsChange(
               relationships.filter(
                 r => !(r.from === from && r.to === to && r.label === label)
               )
