@@ -51,7 +51,7 @@ export default function RelationshipAnnotator(
   const [sequence, changeSequence] = useState(newSequence);
 
   useEffect(() => {
-    setRelationships([]);
+    setRelationships(props.initialRelationships || []);
     changeSequence(newSequence());
   }, [props.document]);
 
