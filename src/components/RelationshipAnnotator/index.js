@@ -98,7 +98,7 @@ export default function RelationshipAnnotator(
 
               changeSequence(newSequence)
               props.onChange({
-                sequence: mergeSequence(newSequence),
+                sequence: newSequence,
                 relationships
               })
               changeHighlightedItems([])
@@ -160,7 +160,7 @@ export default function RelationshipAnnotator(
             changeSequence(sequence)
             const allTextIds = new Set(sequence.map(item => item.textId))
             props.onChange({
-              sequence: mergeSequence(sequence),
+              sequence: sequence,
               relationships: relationships.filter(
                 r => allTextIds.has(r.from) && allTextIds.has(r.to)
               )
