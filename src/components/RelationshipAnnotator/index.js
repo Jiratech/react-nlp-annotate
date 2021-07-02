@@ -80,7 +80,7 @@ export default function RelationshipAnnotator(
           labels={labels}
           onSelectLabel={(label: string) => {
             if (!creatingRelationships) {
-              if (highlightedItems.length === 0) return
+              if (highlightedItems.length === 0) return;
               let buildText = ""
               let newSequence = [...sequence]
               for (let itemIndex of highlightedItems) {
@@ -103,9 +103,10 @@ export default function RelationshipAnnotator(
               })
               changeHighlightedItems([])
             } else {
+              if (!activePair) return;
               setActivePair(null)
               const newRelationships = relationships.concat([
-                { ...activePair, label: label, color: colorLabelMap[label] }
+                { ...activePair, label: label, color: colorLabelMap[label], temp: false }
               ])
               setRelationships(newRelationships)
               props.onChange({
