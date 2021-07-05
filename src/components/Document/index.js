@@ -117,8 +117,8 @@ export default function Document({
           sequenceItemPositionsRef={sequenceItemPositionsRef}
           relationshipsOn={Boolean(relationships)}
           createRelationshipsMode={createRelationshipsMode}
-          onChangeFirstSequenceItem={(item) => { console.warn('setFirstSequenceItem', item);setFirstSequenceItem(item); }}
-          onChangeSecondSequenceItem={(item) => { console.warn('secondSequenceItem', item);setSecondSequenceItem(item); }}
+          onChangeFirstSequenceItem={setFirstSequenceItem}
+          onChangeSecondSequenceItem={setSecondSequenceItem}
           onCreateEmptyRelationship={onCreateEmptyRelationship}
           onChangeHighlightedRange={changeHighlightedRange}
           firstSequenceItem={firstSequenceItem}
