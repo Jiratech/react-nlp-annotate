@@ -86,6 +86,11 @@ export default function Document({
   }
 
   const onRemoveLabel = useEventCallback(sequenceItemIndex => {
+    if (constraintRelationships) { // if the relations are constraint by labels, when remove label, remove also the relationship
+      onRelationshipsChange(
+        relationships.filter((relation) => ![relation.from, relation.to].includes(sequence[sequenceItemIndex].textId))
+      )
+    }
     onSequenceChange(
       sequence
         .flatMap((s, i) =>
