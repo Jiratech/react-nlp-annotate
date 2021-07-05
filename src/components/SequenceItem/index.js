@@ -67,7 +67,8 @@ export const SequenceItem = ({
   lastSelected,
   colorLabelMap,
   isHighlighted,
-  onRemoveLabel
+  onRemoveLabel,
+  constraintRelationships,
 }) => {
   return (
     <SequenceItemContainer
@@ -87,6 +88,7 @@ export const SequenceItem = ({
       onMouseUp={e => {
         if (!createRelationshipsMode) return
         if (!secondSequenceItem) {
+          if (!label && constraintRelationships) { return; } // remove possibility to add  relationships between sequence item without label
           onChangeFirstSequenceItem(null)
           onChangeSecondSequenceItem(null)
           onCreateEmptyRelationship([firstSequenceItem, textId])
@@ -95,8 +97,9 @@ export const SequenceItem = ({
           onChangeSecondSequenceItem(null)
         }
       }}
-      onMouseDown={() => {
+      onMouseDown={() => { 
         if (createRelationshipsMode) {
+          if (!label && constraintRelationships) { return; } // remove possibility to add  relationships between sequence item without label
           if (!firstSequenceItem) {
             onChangeFirstSequenceItem(textId)
           }

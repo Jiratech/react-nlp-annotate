@@ -58,7 +58,8 @@ export type RelationshipAnnotatorProps = {
   onChange: ({
     sequence: Array<SequenceItem>,
     relationships: Array<Relationship>
-  }) => any
+  }) => any,
+  constraintRelationships?: boolean,
 }
 
 export type TranscriberProps = {

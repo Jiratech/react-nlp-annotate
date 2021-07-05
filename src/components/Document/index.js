@@ -29,7 +29,8 @@ type Props = {
   onSequenceChange?: (Array<SequenceItem>) => any,
   onHighlightedChanged?: (Array<number>) => any,
   nothingHighlighted?: boolean,
-  colorLabelMap?: Object
+  colorLabelMap?: Object,
+  constraintRelationships?: boolean,
 }
 
 export default function Document({
@@ -41,7 +42,8 @@ export default function Document({
   onRelationshipsChange = () => null,
   nothingHighlighted = false,
   createRelationshipsMode = false,
-  colorLabelMap = {}
+  colorLabelMap = {},
+  constraintRelationships = false,
 }: Props) {
   const sequenceItemPositionsRef = useRef({})
   const [mouseDown, changeMouseDown] = useState()
@@ -111,11 +113,12 @@ export default function Document({
         <SequenceItem
           {...seq}
           sequenceItemIndex={i}
+          constraintRelationships={constraintRelationships}
           sequenceItemPositionsRef={sequenceItemPositionsRef}
           relationshipsOn={Boolean(relationships)}
           createRelationshipsMode={createRelationshipsMode}
-          onChangeFirstSequenceItem={setFirstSequenceItem}
-          onChangeSecondSequenceItem={setSecondSequenceItem}
+          onChangeFirstSequenceItem={(item) => { console.warn('setFirstSequenceItem', item);setFirstSequenceItem(item); }}
+          onChangeSecondSequenceItem={(item) => { console.warn('secondSequenceItem', item);setSecondSequenceItem(item); }}
           onCreateEmptyRelationship={onCreateEmptyRelationship}
           onChangeHighlightedRange={changeHighlightedRange}
           firstSequenceItem={firstSequenceItem}

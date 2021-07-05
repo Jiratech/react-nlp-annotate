@@ -140,6 +140,7 @@ export default function RelationshipAnnotator(
       </LabelSelectorContainer>
       <div style={{ borderTop: "1px solid #ccc", marginTop: 8, paddingTop: 5 }}>
         <Document
+          constraintRelationships={props.constraintRelationships}
           separatorRegex={props.separatorRegex}
           colorLabelMap={colorLabelMap}
           nothingHighlighted={highlightedItems.length === 0}
