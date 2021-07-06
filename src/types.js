@@ -60,6 +60,7 @@ export type RelationshipAnnotatorProps = {
     relationships: Array<Relationship>
   }) => any,
   constraintRelationships?: boolean,
+  overviewMode?: boolean,
 }
 
 export type TranscriberProps = {

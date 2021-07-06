@@ -44,6 +44,7 @@ export default function Document({
   createRelationshipsMode = false,
   colorLabelMap = {},
   constraintRelationships = false,
+  overviewMode = false,
 }: Props) {
   const sequenceItemPositionsRef = useRef({})
   const [mouseDown, changeMouseDown] = useState()
@@ -118,6 +119,7 @@ export default function Document({
         <SequenceItem
           {...seq}
           sequenceItemIndex={i}
+          overviewMode={overviewMode}
           constraintRelationships={constraintRelationships}
           sequenceItemPositionsRef={sequenceItemPositionsRef}
           relationshipsOn={Boolean(relationships)}

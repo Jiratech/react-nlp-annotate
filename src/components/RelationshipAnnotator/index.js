@@ -79,6 +79,7 @@ export default function RelationshipAnnotator(
           hotkeysEnabled={props.hotkeysEnabled}
           labels={labels}
           onSelectLabel={(label: string) => {
+            if (props.overviewMode) { return; }
             if (!creatingRelationships) {
               if (highlightedItems.length === 0) return;
               let buildText = ""
@@ -141,10 +142,12 @@ export default function RelationshipAnnotator(
       <div style={{ borderTop: "1px solid #ccc", marginTop: 8, paddingTop: 5 }}>
         <Document
           constraintRelationships={props.constraintRelationships}
+          overviewMode={props.overviewMode}
           separatorRegex={props.separatorRegex}
           colorLabelMap={colorLabelMap}
           nothingHighlighted={highlightedItems.length === 0}
           onCreateEmptyRelationship={([first, second]) => {
+            if (props.overviewMode) { return; }
             setActivePair({
               from: first,
               to: second,
@@ -154,6 +157,7 @@ export default function RelationshipAnnotator(
             })
           }}
           onRelationshipsChange={rel => {
+            if (props.overviewMode) { return; }
             setRelationships(rel);
             const allTextIds = new Set(sequence.map(item => item.textId))
             props.onChange({
@@ -164,9 +168,11 @@ export default function RelationshipAnnotator(
             })
           }}
           onHighlightedChanged={highlightedItems => {
+            if (props.overviewMode) { return; }
             changeHighlightedItems(highlightedItems)
           }}
           onSequenceChange={seq => {
+            if (props.overviewMode) { return; }
             changeSequence(seq)
             const allTextIds = new Set(seq.map(item => item.textId))
             props.onChange({

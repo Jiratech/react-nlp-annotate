@@ -69,6 +69,7 @@ export const SequenceItem = ({
   isHighlighted,
   onRemoveLabel,
   constraintRelationships,
+  overviewMode,
 }) => {
   return (
     <SequenceItemContainer
@@ -86,6 +87,7 @@ export const SequenceItem = ({
       }}
       relationshipsOn={relationshipsOn}
       onMouseUp={e => {
+        if (overviewMode) { return; }
         if (!createRelationshipsMode) return
         if (!secondSequenceItem) {
           if (!label && constraintRelationships) { return; } // remove possibility to add  relationships between sequence item without label
@@ -98,6 +100,7 @@ export const SequenceItem = ({
         }
       }}
       onMouseDown={() => { 
+        if (overviewMode) { return; }
         if (createRelationshipsMode) {
           if (!label && constraintRelationships) { return; } // remove possibility to add  relationships between sequence item without label
           if (!firstSequenceItem) {
@@ -109,6 +112,7 @@ export const SequenceItem = ({
         }
       }}
       onMouseMove={() => {
+        if (overviewMode) { return; }
         if (!mouseDown) return
         if (!createRelationshipsMode) {
           if (label) return
@@ -139,7 +143,7 @@ export const SequenceItem = ({
       ) : (
         <div>{text}</div>
       )}
-      {label && !createRelationshipsMode && (
+      {label && !createRelationshipsMode && !overviewMode && (
         <XContainer
           onClick={e => {
             e.stopPropagation()
