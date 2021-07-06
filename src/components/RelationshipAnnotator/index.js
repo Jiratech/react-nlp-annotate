@@ -34,7 +34,7 @@ export default function RelationshipAnnotator(
     props.initialRelationships || []
   )
   const [activePair, setActivePair] = useState(null)
-  const [creatingRelationships, setCreatingRelationships] = useState(true)
+  const [creatingRelationships, setCreatingRelationships] = useState(false)
   const newSequence = () => {
     const textIdsInRelationship = new Set(
       relationships.flatMap(({ to, from }) => [to, from])
@@ -129,14 +129,14 @@ export default function RelationshipAnnotator(
             }
           }}
         >
-          <ToggleButton value="relationships">
-            <LowPriorityIcon style={{ transform: "rotate(90deg)" }} />
-          </ToggleButton>
           {props.entityLabels && (
             <ToggleButton value="entities">
               <TextFormatIcon />
             </ToggleButton>
           )}
+          <ToggleButton value="relationships">
+            <LowPriorityIcon style={{ transform: "rotate(90deg)" }} />
+          </ToggleButton>
         </ToggleButtonGroup>
       </LabelSelectorContainer>
       <div style={{ borderTop: "1px solid #ccc", marginTop: 8, paddingTop: 5 }}>
