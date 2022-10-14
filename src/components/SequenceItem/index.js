@@ -8,11 +8,9 @@ const SequenceItemContainer = styled("span")(({ color, relationshipsOn }) => ({
   cursor: "pointer",
   backgroundColor: color,
   color: "#fff",
-  padding: 4,
-  margin: 4,
+  padding: 2,
+  margin: 1,
   marginBottom: relationshipsOn ? 64 : 4,
-  paddingLeft: 10,
-  paddingRight: 10,
   borderRadius: 4,
   userSelect: "none",
   boxSizing: "border-box",
@@ -20,14 +18,21 @@ const SequenceItemContainer = styled("span")(({ color, relationshipsOn }) => ({
     color: "#333",
     paddingTop: 4,
     paddingBottom: 4,
-    paddingLeft: 2,
-    paddingRight: 2,
+    paddingLeft: 1,
+    paddingRight: 1,
     ".notSpace:hover": {
       paddingTop: 2,
       paddingBottom: 2,
       paddingLeft: 0,
       paddingRight: 0,
       border: `2px dashed #ccc`
+    },
+    "&.newLine": {
+      width: "100%",
+      height: 0,
+      border: "none",
+      margin: 0,
+      padding: 0
     }
   }
 }))
@@ -126,7 +131,8 @@ export const SequenceItem = ({
       }}
       className={classNames(
         label ? "label" : "unlabeled",
-        text.trim().length > 0 && "notSpace"
+        text.trim().length > 0 && text !== '\n' && "notSpace",
+        text.includes('\n') && "newLine"
       )}
       color={
         label
