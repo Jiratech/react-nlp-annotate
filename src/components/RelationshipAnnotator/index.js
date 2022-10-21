@@ -74,7 +74,7 @@ export default function RelationshipAnnotator(
 
   return (
     <div>
-      <LabelSelectorContainer>
+      {!props.overviewMode && <LabelSelectorContainer>
         <LabelSelector
           hotkeysEnabled={props.hotkeysEnabled}
           labels={labels}
@@ -138,7 +138,7 @@ export default function RelationshipAnnotator(
             <LowPriorityIcon style={{ transform: "rotate(90deg)" }} />
           </ToggleButton>
         </ToggleButtonGroup>
-      </LabelSelectorContainer>
+      </LabelSelectorContainer>}
       <div style={{ borderTop: "1px solid #ccc", marginTop: 8, paddingTop: 5 }}>
         <Document
           constraintRelationships={props.constraintRelationships}
