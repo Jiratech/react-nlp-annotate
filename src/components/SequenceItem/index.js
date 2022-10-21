@@ -108,6 +108,7 @@ export const SequenceItem = ({
           onChangeSecondSequenceItem(null)
         }
       }}
+      style={{position: 'relative'}}
       onMouseDown={() => { 
         if (overviewMode) { return; }
         if (createRelationshipsMode) {
@@ -146,13 +147,25 @@ export const SequenceItem = ({
           : "inherit"
       }
     >
-      {label ? (
-        <Tooltip open={overviewMode} title={label} placement="bottom">
+      {label && !overviewMode ? (
+        <Tooltip title={label} placement="bottom">
           <div>{text}</div>
         </Tooltip>
       ) : (
         <div>{text}</div>
       )}
+      {overviewMode && <div style={{    
+        position: 'absolute',
+        bottom: '-15px',
+        left: '-1px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        left: 0,
+        right: 0,
+        textAlign: 'center',
+        color: 'black',
+        fontSize: '10px',
+      }}>{label}</div>}
       {label && !createRelationshipsMode && !overviewMode && (
         <XContainer
           onClick={e => {
