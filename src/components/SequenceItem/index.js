@@ -143,7 +143,7 @@ export const SequenceItem = ({
       }
     >
       {label ? (
-        <Tooltip title={label} placement="bottom">
+        <Tooltip open={overviewMode} title={label} placement="bottom">
           <div>{text}</div>
         </Tooltip>
       ) : (
