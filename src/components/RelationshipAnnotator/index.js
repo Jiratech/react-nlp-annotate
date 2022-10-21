@@ -156,6 +156,7 @@ export default function RelationshipAnnotator(
               temp: true,
             })
           }}
+          onClick={props.onClick}
           onRelationshipsChange={rel => {
             if (props.overviewMode) { return; }
             setRelationships(rel);

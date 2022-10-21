@@ -45,6 +45,7 @@ export default function Document({
   colorLabelMap = {},
   constraintRelationships = false,
   overviewMode = false,
+  onClick = (id: string) => {}
 }: Props) {
   const sequenceItemPositionsRef = useRef({})
   const [mouseDown, changeMouseDown] = useState()
@@ -131,6 +132,7 @@ export default function Document({
           firstSequenceItem={firstSequenceItem}
           secondSequenceItem={secondSequenceItem}
           mouseDown={mouseDown}
+          onClick={onClick}
           firstSelected={firstSelected}
           lastSelected={lastSelected}
           isHighlighted={highlightedItems.includes(i)}

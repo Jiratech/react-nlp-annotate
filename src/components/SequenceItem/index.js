@@ -75,6 +75,7 @@ export const SequenceItem = ({
   onRemoveLabel,
   constraintRelationships,
   overviewMode,
+  onClick,
 }) => {
   return (
     <SequenceItemContainer
@@ -89,6 +90,9 @@ export const SequenceItem = ({
             height: elm.offsetHeight
           }
         }
+      }}
+      onClick={() => {
+        onClick(textId);
       }}
       relationshipsOn={relationshipsOn}
       onMouseUp={e => {

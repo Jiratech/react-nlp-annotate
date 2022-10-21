@@ -61,6 +61,7 @@ export type RelationshipAnnotatorProps = {
   }) => any,
   constraintRelationships?: boolean,
   overviewMode?: boolean,
+  onClick?: (id: string) => void, 
 }
 
 export type TranscriberProps = {
@@ -85,6 +86,7 @@ export type NLPAnnotatorProps = {
   onFinish?: string,
   onChange?: string,
   showHeader?: boolean,
+  onClick?: (id: string) => void,
 }
 
 export type Output =
